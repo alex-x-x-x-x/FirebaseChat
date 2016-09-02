@@ -13,4 +13,4 @@
 # Also includes presence management: 
 ![6hzmea8atq](https://cloud.githubusercontent.com/assets/21044119/18219430/8c743f02-7137-11e6-834b-8cc61e363bd9.gif)
 
-**See when your friends log-in/log-off.**
+
