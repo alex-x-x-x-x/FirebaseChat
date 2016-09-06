@@ -109,12 +109,12 @@
 			children = (
 				558CB54B1D5D53B0008B9D87 /* Street-View.mp4 */,
 				5580A5601D5D071E00DA9FBA /* AppDelegate.swift */,
+				5501E8EB1D63D95400D9A85A /* User.swift */,
 				558CB53F1D5D326E008B9D87 /* LoginViewController.swift */,
 				552647DB1D5D95CF0085AF01 /* ResetPassword.swift */,
 				558CB5411D5D32D8008B9D87 /* CreateANewAccount.swift */,
 				558CB5431D5D3302008B9D87 /* MessageCenterViewController.swift */,
 				552647DD1D5DAC2A0085AF01 /* OnlineUsersTableViewController.swift */,
-				5501E8EB1D63D95400D9A85A /* User.swift */,
 				5580A5641D5D071E00DA9FBA /* Main.storyboard */,
 				5580A5671D5D071E00DA9FBA /* Assets.xcassets */,
 				5580A5691D5D071E00DA9FBA /* LaunchScreen.storyboard */,
