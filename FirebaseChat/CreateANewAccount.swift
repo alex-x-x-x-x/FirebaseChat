@@ -18,18 +18,26 @@ class CreateANewAccount: UIViewController {
     
     @IBOutlet weak var createNewPassword: UITextField!
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateANewAccount.dismissKeyboard))
         view.addGestureRecognizer(tap)
+       let swipeRec = UISwipeGestureRecognizer()
+   
     }
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    @IBAction func upGesture(sender: UISwipeGestureRecognizer) {
+        print("Up")
+    }
+
     
     @IBAction func signUpNewAcct(sender: AnyObject) {
         self.ref.createUser(createNewEmail.text, password: createNewPassword.text, withValueCompletionBlock: { error, result in

@@ -15,6 +15,7 @@ class ResetPassword: UIViewController {
 
     @IBOutlet weak var resetPasswordForUser: UITextField!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +23,8 @@ class ResetPassword: UIViewController {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResetPassword.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        let swipeRec = UISwipeGestureRecognizer()
+   
     }
     
     func dismissKeyboard() {

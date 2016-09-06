@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ATL" translatesAutoresizingMaskIntoConstraints="NO" id="NTF-Wy-blj">
-                                <rect key="frame" x="-176" y="0.0" width="607" height="736"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ATL" translatesAutoresizingMaskIntoConstraints="NO" id="ahN-rn-UFY">
+                                <rect key="frame" x="-13" y="0.0" width="427" height="736"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your email" placeholder="Enter your email" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pFj-v4-Y3k">
                                 <rect key="frame" x="87" y="189" width="225" height="30"/>
@@ -49,6 +49,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="pFj-v4-Y3k" firstAttribute="top" secondItem="lSz-3l-xjh" secondAttribute="bottom" constant="101" id="S9J-cZ-ps1"/>
                             <constraint firstItem="lSz-3l-xjh" firstAttribute="trailing" secondItem="pFj-v4-Y3k" secondAttribute="trailing" constant="-22" id="T7o-zE-uAU"/>
@@ -59,6 +60,9 @@
                             <constraint firstItem="pan-pK-x4J" firstAttribute="top" secondItem="pFj-v4-Y3k" secondAttribute="bottom" constant="181" id="sSV-hd-45p"/>
                             <constraint firstItem="pFj-v4-Y3k" firstAttribute="centerX" secondItem="pan-pK-x4J" secondAttribute="centerX" constant="-0.5" id="tuj-v2-dOQ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ccu-mQ-iZU" appends="YES" id="lpR-HP-MkC"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -68,6 +72,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjB-WD-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" direction="up" id="ccu-mQ-iZU">
+                    <connections>
+                        <segue destination="2ca-Lo-1UM" kind="show" id="NcG-1R-eEl"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-539" y="1297"/>
         </scene>
@@ -156,7 +165,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Atlanta" translatesAutoresizingMaskIntoConstraints="NO" id="Tp9-I0-zsZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Atlanta" translatesAutoresizingMaskIntoConstraints="NO" id="qll-r6-vpg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iVw-Gb-BQm">
@@ -202,6 +211,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vgj-So-tpf" secondAttribute="trailing" constant="102" id="2gA-CE-7Gz"/>
                             <constraint firstItem="EVK-NB-8XH" firstAttribute="top" secondItem="jrv-1u-iA8" secondAttribute="bottom" constant="240" id="2mm-LI-qyD"/>
@@ -217,6 +227,9 @@
                             <constraint firstAttribute="trailing" secondItem="xws-CB-Mho" secondAttribute="trailing" constant="113" id="m25-6Y-W4a"/>
                             <constraint firstItem="xws-CB-Mho" firstAttribute="leading" secondItem="fTZ-gK-EPD" secondAttribute="leading" constant="120" id="vcq-AJ-dRl"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WWs-H5-kT8" appends="YES" id="fJn-ET-OY4"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="createNewEmail" destination="iVw-Gb-BQm" id="NuN-lS-ZY9"/>
@@ -225,6 +238,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TmK-h7-9xz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" direction="up" id="WWs-H5-kT8">
+                    <connections>
+                        <segue destination="2ca-Lo-1UM" kind="show" id="wbq-ne-bly"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-54" y="1359"/>
         </scene>
@@ -315,6 +333,6 @@
         <image name="Signup" width="154" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XxD-Yp-i62"/>
+        <segue reference="buD-uI-0QJ"/>
     </inferredMetricsTieBreakers>
 </document>
