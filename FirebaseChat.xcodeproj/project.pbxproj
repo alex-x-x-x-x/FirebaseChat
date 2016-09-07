@@ -24,6 +24,7 @@
 		558CB54E1D5D53D2008B9D87 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558CB54D1D5D53D2008B9D87 /* AVFoundation.framework */; };
 		558CB5501D5D5694008B9D87 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558CB54F1D5D5694008B9D87 /* AVKit.framework */; };
 		55F7BC861D71EF2100BD814E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F7BC851D71EF2100BD814E /* NotificationCenter.framework */; };
+		55FBC8481D7F4485003727E5 /* MyImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC8471D7F4485003727E5 /* MyImageCache.swift */; };
 		5E5527CCFBBF883D818BFC81 /* Pods_FirebaseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F814A341FC44959164C31A /* Pods_FirebaseChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		558CB54D1D5D53D2008B9D87 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		558CB54F1D5D5694008B9D87 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		55F7BC851D71EF2100BD814E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		55FBC8471D7F4485003727E5 /* MyImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageCache.swift; sourceTree = "<group>"; };
 		9EFE823A3B4933F0C732638B /* Pods-FirebaseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChat/Pods-FirebaseChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A8F814A341FC44959164C31A /* Pods_FirebaseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				552647DB1D5D95CF0085AF01 /* ResetPassword.swift */,
 				558CB5411D5D32D8008B9D87 /* CreateANewAccount.swift */,
 				558CB5431D5D3302008B9D87 /* MessageCenterViewController.swift */,
+				55FBC8471D7F4485003727E5 /* MyImageCache.swift */,
 				552647DD1D5DAC2A0085AF01 /* OnlineUsersTableViewController.swift */,
 				5580A5641D5D071E00DA9FBA /* Main.storyboard */,
 				5580A5671D5D071E00DA9FBA /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			files = (
 				558CB5421D5D32D8008B9D87 /* CreateANewAccount.swift in Sources */,
 				558CB5401D5D326E008B9D87 /* LoginViewController.swift in Sources */,
+				55FBC8481D7F4485003727E5 /* MyImageCache.swift in Sources */,
 				552647DC1D5D95CF0085AF01 /* ResetPassword.swift in Sources */,
 				552647DE1D5DAC2A0085AF01 /* OnlineUsersTableViewController.swift in Sources */,
 				5580A5611D5D071E00DA9FBA /* AppDelegate.swift in Sources */,

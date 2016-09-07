@@ -14,9 +14,12 @@ class MessageCenterViewController:  JSQMessagesViewController {
     let userRef = Firebase(url: "https://chatchatl.firebaseio.com/online")
     let rootRef = Firebase(url: "https://chatchatl.firebaseio.com/")
     let defaults = NSUserDefaults.standardUserDefaults()
+   
     
     var messageRef: Firebase!
     var messages = [JSQMessage]()
+    var avatars = [String: JSQMessagesAvatarImage]()
+ 
     
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
@@ -26,7 +29,7 @@ class MessageCenterViewController:  JSQMessagesViewController {
     @IBOutlet var MessageView: UIView!
     @IBOutlet weak var leftBarButtonItem: UINavigationItem!
     
-    var userIsTypingRef: Firebase! // 1
+    var userIsTypingRef: Firebase!
     private var localTyping = false
     var isTyping: Bool {
         get {
@@ -44,8 +47,8 @@ class MessageCenterViewController:  JSQMessagesViewController {
         self.senderId = UIDevice.currentDevice().identifierForVendor?.UUIDString
         self.senderDisplayName = UIDevice.currentDevice().identifierForVendor?.UUIDString
         // Avatar
-        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
+        collectionView.collectionViewLayout.outgoingAvatarViewSize = .zero
+        collectionView.collectionViewLayout.incomingAvatarViewSize = .zero
         // leftBarButtonItem
         self.inputToolbar.contentView.leftBarButtonItem = nil
         
@@ -58,7 +61,7 @@ class MessageCenterViewController:  JSQMessagesViewController {
         //self.collectionView?.backgroundColor = UIColor.lightGrayColor()
         self.collectionView?.layoutIfNeeded()
         self.collectionView?.reloadData()
-        
+       
         setupBubbles()
         observeMessages()
     }
@@ -82,6 +85,7 @@ class MessageCenterViewController:  JSQMessagesViewController {
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor(red: 0.498, green: 0.0863, blue: 0.2784, alpha: 1.0))
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor(red: 0.7373, green: 0.1294, blue: 0.2941, alpha: 1.0))
     }
+   
     
     
     func addMessage(id: String, text: String) {
@@ -107,6 +111,12 @@ class MessageCenterViewController:  JSQMessagesViewController {
             self.finishReceivingMessage()
         JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
     }
+        
+        var notification = UILocalNotification()
+        notification.alertBody = "New Message"
+        notification.alertAction = "Be Awesome"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
 }
     override func textViewDidChange(textView: UITextView) {
         super.textViewDidChange(textView)
@@ -148,7 +158,7 @@ class MessageCenterViewController:  JSQMessagesViewController {
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        // Leave blank
+       // Leave empty
         
     }
     
@@ -200,8 +210,12 @@ class MessageCenterViewController:  JSQMessagesViewController {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
         
-        return nil
+        let message = messages[indexPath.row]
+        return avatars[message.senderId]
     }
+    
+
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
