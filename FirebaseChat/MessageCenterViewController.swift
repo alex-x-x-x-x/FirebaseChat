@@ -111,8 +111,8 @@ class MessageCenterViewController:  JSQMessagesViewController {
             self.finishReceivingMessage()
         JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
     }
-        
-        var notification = UILocalNotification()
+        // Enable local notifications for receiving messages
+        let notification = UILocalNotification()
         notification.alertBody = "New Message"
         notification.alertAction = "Be Awesome"
         notification.soundName = UILocalNotificationDefaultSoundName
