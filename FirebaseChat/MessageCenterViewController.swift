@@ -5,6 +5,7 @@
 //  Created by Safina Lifa on 8/11/16.
 //  Copyright © 2016 Safina Lifa. All rights reserved.
 //
+
 import UIKit
 import JSQMessagesViewController
 import Firebase
@@ -14,16 +15,11 @@ class MessageCenterViewController:  JSQMessagesViewController {
     let userRef = Firebase(url: "https://chatchatl.firebaseio.com/online")
     let rootRef = Firebase(url: "https://chatchatl.firebaseio.com/")
     let defaults = NSUserDefaults.standardUserDefaults()
-   
-    
     var messageRef: Firebase!
     var messages = [JSQMessage]()
     var avatars = [String: JSQMessagesAvatarImage]()
- 
-    
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
-    
     var usersTypingQuery: FQuery!
     
     @IBOutlet var MessageView: UIView!
@@ -56,7 +52,7 @@ class MessageCenterViewController:  JSQMessagesViewController {
         collectionView.collectionViewLayout.springinessEnabled = true
         automaticallyScrollsToMostRecentMessage = true
         // Toolbar UI
-        self.inputToolbar?.barStyle = .BlackTranslucent
+        // self.inputToolbar?.barStyle = .BlackTranslucent
         self.inputToolbar?.contentView?.textView?.keyboardAppearance = .Dark
         //self.collectionView?.backgroundColor = UIColor.lightGrayColor()
         self.collectionView?.layoutIfNeeded()
@@ -68,25 +64,27 @@ class MessageCenterViewController:  JSQMessagesViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         collectionView.collectionViewLayout.springinessEnabled = true
         automaticallyScrollsToMostRecentMessage = true
-  
-          
         self.collectionView?.layoutIfNeeded()
-        
         observeTyping()
-       
     }
     
     private func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
-        
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor(red: 0.498, green: 0.0863, blue: 0.2784, alpha: 1.0))
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor(red: 0.7373, green: 0.1294, blue: 0.2941, alpha: 1.0))
     }
-   
     
+    func playNotification() {
+        // Enable local notifications for incoming messages
+        var localNotification = UILocalNotification()
+        localNotification.alertBody = "New Message"
+        localNotification.alertTitle = "Unread Message"
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.applicationIconBadgeNumber = self.messages.count 
+        UIApplication.sharedApplication().presentLocalNotificationNow(localNotification)
+    }
     
     func addMessage(id: String, text: String) {
         let message = JSQMessage(senderId: id, displayName: "", text: text)
@@ -102,21 +100,16 @@ class MessageCenterViewController:  JSQMessagesViewController {
     private func observeMessages() {
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
-            
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
-            
             self.addMessage(id, text: text)
-          
             self.finishReceivingMessage()
         JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+            self.playNotification()
+
     }
-        // Enable local notifications for receiving messages
-        let notification = UILocalNotification()
-        notification.alertBody = "New Message"
-        notification.alertAction = "Be Awesome"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    
+        
 }
     override func textViewDidChange(textView: UITextView) {
         super.textViewDidChange(textView)
@@ -129,21 +122,17 @@ class MessageCenterViewController:  JSQMessagesViewController {
         let typingIndicatorRef = rootRef.childByAppendingPath("typingIndicator")
         userIsTypingRef = typingIndicatorRef.childByAppendingPath(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
-        
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqualToValue(true)
-        
         usersTypingQuery.observeEventType(.Value) { (data: FDataSnapshot!) in
-            
             if data.childrenCount == 1 && self.isTyping {
                 return
             }
-            
             self.showTypingIndicator = data.childrenCount > 0
             self.scrollToBottomAnimated(true)
         }
     }
+    
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
             "text": text,
@@ -157,6 +146,13 @@ class MessageCenterViewController:  JSQMessagesViewController {
         isTyping = false
     }
     
+    //func finishReceivingMessage(text: String!, senderId: String!) {
+      //  self.finishReceivingMessage()
+    // playNotification()
+        
+
+   // }
+    
     override func didPressAccessoryButton(sender: UIButton!) {
        // Leave empty
         
@@ -167,7 +163,10 @@ class MessageCenterViewController:  JSQMessagesViewController {
 
         return messages.count
         
+        
     }
+    
+  
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         
@@ -206,17 +205,11 @@ class MessageCenterViewController:  JSQMessagesViewController {
         
         return cell
     }
-    
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
         
         let message = messages[indexPath.row]
         return avatars[message.senderId]
     }
-    
-
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

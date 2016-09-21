@@ -8,18 +8,12 @@
 import UIKit
 import Firebase
 
-
 class OnlineUsersTableViewController: UITableViewController {
-    
-    // MARK: Constants
     let ref = Firebase(url: "https://chatchatl.firebaseio.com/")
     let usersRef = Firebase(url: "https://chatchatl.firebaseio.com/online")
     var user: User!
-    
-    // MARK: Properties
     var currentUsers: [String] = [String]()
     
-    // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,8 +67,6 @@ class OnlineUsersTableViewController: UITableViewController {
         })
         
     }
-    
-    // MARK: UITableView Delegate methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentUsers.count
