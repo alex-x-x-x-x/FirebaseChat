@@ -76,13 +76,12 @@ class MessageCenterViewController:  JSQMessagesViewController {
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor(red: 0.7373, green: 0.1294, blue: 0.2941, alpha: 1.0))
     }
     
-    func playNotification() {
+    private func playNotification() {
         // Enable local notifications for incoming messages
         var localNotification = UILocalNotification()
-        localNotification.alertBody = "New Message"
-        localNotification.alertTitle = "Unread Message"
+        localNotification.alertTitle = "New Message"
+        localNotification.alertBody = "🙈"
         localNotification.soundName = UILocalNotificationDefaultSoundName
-        localNotification.applicationIconBadgeNumber = self.messages.count 
         UIApplication.sharedApplication().presentLocalNotificationNow(localNotification)
     }
     
@@ -97,18 +96,20 @@ class MessageCenterViewController:  JSQMessagesViewController {
     }
     
     
-    private func observeMessages() {
-        let messagesQuery = messageRef.queryLimitedToLast(25)
+        func observeMessages() {
+        let messagesQuery = messageRef.queryLimitedToLast(1)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
             self.addMessage(id, text: text)
+            
             self.finishReceivingMessage()
-        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             self.playNotification()
-
+            
+        
     }
-    
+
         
 }
     override func textViewDidChange(textView: UITextView) {
@@ -147,8 +148,8 @@ class MessageCenterViewController:  JSQMessagesViewController {
     }
     
     //func finishReceivingMessage(text: String!, senderId: String!) {
-      //  self.finishReceivingMessage()
-    // playNotification()
+       // var incomingMessage = Int.self
+       // playNotification()
         
 
    // }
@@ -159,13 +160,11 @@ class MessageCenterViewController:  JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-
+        
         return messages.count
         
-        
     }
-    
+
   
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
